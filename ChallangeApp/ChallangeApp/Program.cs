@@ -1,31 +1,60 @@
-﻿string name = "Ewa";
-bool female;
-female = true;
-var age = 33;
+﻿int number = 48590009;
+string nuberAsString = number.ToString();
+char[] signs = nuberAsString.ToArray();
+List<int> nums = new List<int> (Enumerable.Range(0, 10));
 
-if (female == true)
+for (int i = 0; i<=9; i++) 
 {
-    if (name == "Ewa" && age == 33)
+    nums[i] = 0;
+}
+
+foreach (char sign in signs)
+{
+    if (sign == '0')
     {
-        Console.WriteLine("Ewa, lat 33");
+        nums[0]++;        
     }
-    else if (age < 30)
+    else if (sign == '1')
     {
-        Console.WriteLine("Kobieta poniżej 30 lat");
+        nums[1]++;
     }
-    else 
+    else if (sign == '2')
     {
-        Console.WriteLine("Kobieta w wieku 30 lat lub powyżej");
+        nums[2]++;
+    }
+    else if (sign == '3')
+    {
+        nums[3]++;
+    }
+    else if (sign == '4')
+    {
+        nums[4]++;
+    }
+    else if (sign == '5')
+    {
+        nums[5]++;
+    }
+    else if (sign == '6')
+    {
+        nums[6]++;
+    }
+    else if (sign == '7')
+    {
+        nums[7]++;
+    }
+    else if (sign == '8')
+    {
+        nums[8]++;
+    }
+    else if (sign == '9')
+    {
+        nums[9]++;
     }
 }
-else
+Console.WriteLine("Number:" + number);
+Console.WriteLine ("Digit   " + "    Counter");
+
+for (int i = 0; i<10 ; i++)
 {
-    if (age < 18)
-    {
-        Console.WriteLine("Niepełnoletni mężczyzna");
-    }
-    else
-    {
-        Console.WriteLine("Pełnoletni mężczyzna");
-    }
+    Console.WriteLine(i + "     =>      " + nums[i]);
 }
