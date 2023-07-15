@@ -1,60 +1,42 @@
-﻿int number = 48590009;
-string nuberAsString = number.ToString();
-char[] signs = nuberAsString.ToArray();
-List<int> nums = new List<int> (Enumerable.Range(0, 10));
+﻿
+using ChallangeApp;
+using System;
+using System.Runtime.CompilerServices;
 
-for (int i = 0; i<=9; i++) 
-{
-    nums[i] = 0;
-}
+Employee empl1 = new Employee("Jack  ", "Black", 53);
+Employee empl2 = new Employee("Elon  ", "Musk ", 52);
+Employee empl3 = new Employee("Donald", "Trump", 77);
 
-foreach (char sign in signs)
-{
-    if (sign == '0')
-    {
-        nums[0]++;        
-    }
-    else if (sign == '1')
-    {
-        nums[1]++;
-    }
-    else if (sign == '2')
-    {
-        nums[2]++;
-    }
-    else if (sign == '3')
-    {
-        nums[3]++;
-    }
-    else if (sign == '4')
-    {
-        nums[4]++;
-    }
-    else if (sign == '5')
-    {
-        nums[5]++;
-    }
-    else if (sign == '6')
-    {
-        nums[6]++;
-    }
-    else if (sign == '7')
-    {
-        nums[7]++;
-    }
-    else if (sign == '8')
-    {
-        nums[8]++;
-    }
-    else if (sign == '9')
-    {
-        nums[9]++;
-    }
-}
-Console.WriteLine("Number:" + number);
-Console.WriteLine ("Digit   " + "    Counter");
+empl1.addScore(9); empl1.addScore(9); empl1.addScore(7); empl1.addScore(7); empl1.addScore(10);
 
-for (int i = 0; i<10 ; i++)
+empl2.addScore(2); empl2.addScore(2); empl2.addScore(5); empl2.addScore(3); empl2.addScore(3);
+
+empl3.addScore(1); empl3.addScore(2); empl3.addScore(1); empl3.addScore(1); empl3.addScore(1);
+
+//Console.WriteLine(empl2.Result);
+
+
+List<Employee> employees = new List<Employee>()
 {
-    Console.WriteLine(i + "     =>      " + nums[i]);
+    empl1, empl2, empl3
+};
+
+int empl1Score = empl1.Result;
+int empl2Score = empl2.Result;
+int empl3Score = empl3.Result;
+int maxScore = Math.Max(empl1Score, Math.Max(empl2Score, empl3Score));
+//Console.WriteLine(maxScore);
+Console.WriteLine("Name" + "   Surname" + "  Age  " + "Score");
+Console.WriteLine("       ");
+
+foreach (var empl in employees)
+{
+    if (empl.Result == maxScore)
+    {
+        Console.WriteLine(empl.Name + "   " + empl.Surname +"   "+ empl.Age + "   " + empl.Result);
+    }
+    else
+    {
+        Console.WriteLine(empl.Name + "   " + empl.Surname + "   " + empl.Age + "   Loser");
+    }
 }
