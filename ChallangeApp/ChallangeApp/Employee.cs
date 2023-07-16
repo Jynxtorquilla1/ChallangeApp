@@ -1,6 +1,6 @@
 ﻿namespace ChallangeApp
 {
-    class Employee
+    public class Employee
     {
         public string Name { get; private set; }
         public string Surname { get; private set; }
@@ -18,6 +18,11 @@
         public void addMark(int mark)
         {
             this.mark.Add(mark);
+        }
+
+        public void removeMark(int mark)
+        {
+            this.mark.Add(-mark);
         }
 
         public int Result

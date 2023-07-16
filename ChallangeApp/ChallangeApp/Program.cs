@@ -1,7 +1,7 @@
 ﻿using ChallangeApp;
 
 Employee empl1 = new Employee("Jack  ", "Black", 53);
-Employee empl2 = new Employee("Elon  ", "Musk ", 52);
+Employee empl2= new Employee("Elon  ", "Musk ", 52);
 Employee empl3 = new Employee("Donald", "Trump", 77);
 
 empl1.addMark(9);
@@ -9,6 +9,7 @@ empl1.addMark(9);
 empl1.addMark(7);
 empl1.addMark(7);
 empl1.addMark(10);
+empl1.removeMark(42);
 
 empl2.addMark(2);
 empl2.addMark(2);
@@ -51,3 +52,16 @@ foreach (var empl in employees)
         Console.WriteLine(empl.Name + "   " + empl.Surname + "   " + empl.Age +"   " + empl.Result + "   Loser");
     }
 }
+
+int maxResult = -1;
+Employee emplWithMax = null;
+
+foreach (Employee empl in employees)
+{
+    if (empl.Result > maxResult)
+    {
+        emplWithMax = empl;
+        Console.WriteLine(empl.Name + empl.Result);
+    }
+}
+
