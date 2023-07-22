@@ -4,34 +4,46 @@
     {
         public string Name { get; private set; }
         public string Surname { get; private set; }
-        public int Age { get; private set; }
 
-        private List<int> mark = new List<int>();
+        private List<float> marks = new List<float>();
 
-        public Employee(string name, string surname, int age)
-        {
+        public Employee(string name, string surname)
+        { 
             this.Name = name;
             this.Surname = surname;
-            this.Age = age;
         }
 
-        public void addMark(int mark)
+
+        public void addMark(float mark)
         {
-            this.mark.Add(mark);
+            this.marks.Add(mark);
         }
 
-        public void removeMark(int mark)
+        public void removeMark(float mark)
         {
-            this.mark.Add(-mark);
+            this.marks.Add(-mark);
         }
 
-        public int Result
+        public Statistics GetStatistics()
         {
-            get
+            var statistics = new Statistics();
+
+            statistics.Avarage = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach (var mark in this.marks)
             {
-                return mark.Sum();
+                statistics.Max = Math.Max(statistics.Max, mark);
+                statistics.Min = Math.Min(statistics.Min, mark);
+                statistics.Avarage += mark;
             }
 
+            statistics.Avarage /= this.marks.Count;
+
+
+            return statistics;
         }
+
     }
 }

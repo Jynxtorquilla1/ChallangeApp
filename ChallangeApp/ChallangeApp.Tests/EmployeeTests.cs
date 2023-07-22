@@ -1,52 +1,31 @@
 namespace ChallangeApp.Tests
 {
-    public class Tests
+    public class EmployeeTests
     {
         [Test]
-        public void WhenEmployeeCollectsScores_ShouldReturnCorrectSum_Positives()
-
+        public void WhenMarksAreGiven_ShouldReturnCorrectMaxMinAndAvarageValues()
         {
-            var empl = new Employee("Jaros³aw", "Psikuta", 29);
-            empl.addMark(7);
-            empl.addMark(9);
-            empl.addMark(21);
+            //arrange
 
+            var employee1 = new Employee("Ferdynand", "Kiepski");
+            employee1.addMark(7);
+            employee1.addMark(9);
+            employee1.addMark(2);
+            employee1.addMark(5);
+            float avarage = 5.75f;
+            
+            //act
 
-            var result = empl.Result;
+            var statistics = employee1.GetStatistics();
 
-            Assert.AreEqual(37, result);
+            //assert
+
+            Assert.AreEqual(9, statistics.Max);
+            Assert.AreEqual(2, statistics.Min);
+            Assert.AreEqual(avarage, statistics.Avarage);
+
         }
 
-        [Test]
-        public void WhenEmployeeCollectsScores_ShouldReturnCorrectSum_Negatives()
-
-        {
-            var empl = new Employee("Jaros³aw", "Psikuta", 29);
-            empl.removeMark(13);
-            empl.removeMark(2);
-            empl.addMark(-12);
-
-            var result = empl.Result;
-
-            Assert.AreEqual(-27, result);
-        }
-        [Test]
-        public void WhenUserCollectsScores_ShouldReturnCorrectSum_Both()
-
-        {
-            var empl = new Employee("Jaros³aw", "Psikuta", 29);
-            empl.addMark(7);
-            empl.addMark(9);
-            empl.removeMark(13);
-            empl.removeMark(2);
-            empl.addMark(21);
-            empl.addMark(-12);
-
-            var result = empl.Result;
-
-            Assert.AreEqual(10, result);
-
-        }
 
     }
 }
