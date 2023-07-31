@@ -12,16 +12,48 @@
             this.Name = name;
             this.Surname = surname;
         }
-
-
-        public void addMark(float mark)
+        
+        public void AddMark(float mark)
         {
-            this.marks.Add(mark);
+            if (mark >= 0 && mark < 100)
+            {
+                this.marks.Add(mark);
+            }
+            else 
+            {
+                Console.WriteLine($"{mark} is invalid mark value");
+            }
+            
+        }
+        
+        public void AddMark(string mark)
+        {
+            if (float.TryParse(mark, out float result))
+            {
+                this.AddMark(result);
+            }
+            else
+            {
+                Console.WriteLine($"string {mark} is not float ");
+            }
+        }
+                       
+        public void AddMark(double mark)
+        {
+            float doubleInFloat = (float)Math.Round(mark, 2);
+            this.AddMark(doubleInFloat);
         }
 
-        public void removeMark(float mark)
+        public void AddMark(long mark)
         {
-            this.marks.Add(-mark);
+            float doubleInLong = (float)mark;
+            this.AddMark(doubleInLong);
+        }
+
+        public void AddMark(decimal mark)
+        {
+            float doubleInDecimal = (float)Math.Round(mark, 2);
+            this.AddMark(doubleInDecimal);
         }
 
         public Statistics GetStatistics()
