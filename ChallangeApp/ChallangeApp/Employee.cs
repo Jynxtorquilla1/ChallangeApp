@@ -20,7 +20,7 @@ namespace ChallangeApp
         {
             if (mark >= 0 && mark < 100)
             {
-                this.marks.Add(mark);
+                marks.Add(mark);
             }
             else
             {
@@ -59,7 +59,44 @@ namespace ChallangeApp
             this.AddMark(doubleInDecimal);
         }
 
-        public Statistics GetStatisticsWithForeach()
+        //public void AddMark (char mark)
+        //{
+        //    if (mark == 'A' || mark== 'a')
+        //    {
+        //        marks.Add(100);
+        //    }
+        //    else if (mark== 'B'|| mark == 'b')
+        //    {
+        //        marks.Add(80);
+        //    }
+        //}
+        public void AddMark(char mark)
+        {
+            switch (mark)
+            {
+                case 'A':
+                    marks.Add(100);
+                    break;
+                case 'B':
+                    marks.Add(80);
+                    break;
+                case 'C':
+                    marks.Add(60);
+                    break;
+                case 'D':
+                    marks.Add(40);
+                    break;
+                case 'E':
+                    marks.Add(20);
+                    break;
+                default:
+                    Console.WriteLine("Wrong character");
+                    marks.Add(0);
+                    break;
+            }
+        }
+
+        public Statistics GetStatistics()
         {
             var statistics = new Statistics();
 
@@ -76,63 +113,6 @@ namespace ChallangeApp
 
             statistics.Avarage /= this.marks.Count;
 
-            return statistics;
-        }
-
-        public Statistics GetStatisticsWithFor()
-        {
-            var statistics = new Statistics();
-            statistics.Avarage = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            for (var index = 0; index < marks.Count; index++)
-            {
-                statistics.Max = Math.Max(statistics.Max, marks[index]);
-                statistics.Min = Math.Min(statistics.Min, marks[index]);
-                statistics.Avarage += marks[index];
-            }
-            statistics.Avarage /= marks.Count;
-            return statistics;
-        }
-
-
-        public Statistics GetStatisticsWithWhile()
-        {
-            var statistics = new Statistics();
-            statistics.Avarage = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            var index = 0;
-
-            while (index < this.marks.Count)
-            {
-                statistics.Max = Math.Max(statistics.Max, this.marks[index]);
-                statistics.Min = Math.Min(statistics.Min, this.marks[index]);
-                statistics.Avarage += this.marks[index];
-                index++;
-            }
-            statistics.Avarage /= marks.Count;
-            return statistics;
-        }
-
-        public Statistics GetStatisticsWithDoWhile()
-        {
-            var statistics = new Statistics();
-            statistics.Avarage = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            var index = 0;
-
-            do
-            {
-                statistics.Max = Math.Max(statistics.Max, this.marks[index]);
-                statistics.Min = Math.Min(statistics.Min, this.marks[index]);
-                statistics.Avarage += this.marks[index];
-                index++;
-            } while (index < this.marks.Count);
-
-            statistics.Avarage /= marks.Count;
             return statistics;
         }
     }
