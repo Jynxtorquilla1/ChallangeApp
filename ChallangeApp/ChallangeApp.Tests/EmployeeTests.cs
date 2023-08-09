@@ -17,7 +17,7 @@ namespace ChallangeApp.Tests
 
             //act
 
-            var statistics = employee1.GetStatisticsWithForeach();
+            var statistics = employee1.GetStatistics();
 
             //assert
 
@@ -28,56 +28,51 @@ namespace ChallangeApp.Tests
         }
 
         [Test]
-
-        public void WhenMarksAreGiven_ThreeDifferentMethodsShouldReturnSameValues()
+        public void WhenMarksAsCharsGiven_ShouldReturnCorrectStatistics()
         {
             //arrange
 
-            var employee1 = new Employee("Ferdynand", "Kiepski");
-            employee1.AddMark(7);
-            employee1.AddMark(9);
-            employee1.AddMark(2);
-            employee1.AddMark(5);
-            float avarage = 5.75f;
+            var employee1 = new Employee();
+            employee1.AddMark('A');
+            employee1.AddMark('b');
+            employee1.AddMark('C');
+            employee1.AddMark('d');
+            employee1.AddMark('E');
+            
 
             //act
 
-            var statisticsForeach = employee1.GetStatisticsWithForeach();
-            var statisticsFor = employee1.GetStatisticsWithFor();
-            var statisticsWhile = employee1.GetStatisticsWithWhile();
-            var statisticsDoWhile = employee1.GetStatisticsWithDoWhile();
-
-            List<float> statsForeachTest = new List<float>
-            {
-                statisticsForeach.Avarage, statisticsForeach.Min, statisticsForeach.Max
-            };
-            
-            List<float> statsForTest = new List<float> 
-            {
-                statisticsFor.Avarage, statisticsFor.Min, statisticsFor.Max
-            };
-            
-            List<float> statsWhile = new List<float> 
-            {
-                statisticsWhile.Avarage, statisticsWhile.Min, statisticsWhile.Max 
-            };
-           
-            List<float> statsDoWhile = new List<float>
-            { 
-                statisticsDoWhile.Avarage, statisticsDoWhile.Min, statisticsDoWhile.Max
-            };
-
-            bool ForForeachEquality = statsForeachTest.SequenceEqual(statsForTest);
-            bool WhileDoWhileEquality = statsWhile.SequenceEqual(statsDoWhile);
-            bool ForWhileEquality = statsWhile.SequenceEqual(statsDoWhile);
+            var statistics = employee1.GetStatistics();
 
             //assert
 
-            Assert.AreEqual(true, ForForeachEquality);
-            Assert.AreEqual(true, WhileDoWhileEquality);
-            Assert.AreEqual(true, ForWhileEquality);
+            Assert.AreEqual(60, statistics.Avarage);
+            Assert.AreEqual(20, statistics.Min);
+            Assert.AreEqual(100, statistics.Max);
 
         }
 
+        [Test]
+        public void WhenMarksAreGiven_ShouldReturnCorrectAvarageLetter()
+        {
+            //arrange
+
+            var employee1 = new Employee();
+            employee1.AddMark(70);
+            employee1.AddMark('b');
+            employee1.AddMark(30);
+            employee1.AddMark('d');
+            employee1.AddMark(10);
+
+
+            //act
+
+            var statistics = employee1.GetStatistics();
+
+            //assert
+
+            Assert.AreEqual('C', statistics.AvarageLetter);
+           
+        }
     }
 }

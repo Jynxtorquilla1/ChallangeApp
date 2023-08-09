@@ -10,6 +10,11 @@ namespace ChallangeApp
 
         private List<float> marks = new List<float>();
 
+        public Employee() 
+        {
+
+        }
+
         public Employee(string name, string surname)
         {
             this.Name = name;
@@ -18,7 +23,7 @@ namespace ChallangeApp
 
         public void AddMark(float mark)
         {
-            if (mark >= 0 && mark < 100)
+            if (mark >= 0 && mark <= 100)
             {
                 marks.Add(mark);
             }
@@ -33,8 +38,8 @@ namespace ChallangeApp
         {
             if (float.TryParse(mark, out float result))
             {
-                this.AddMark(result);
-            }
+                this.AddMark(result);            }
+            
             else
             {
                 Console.WriteLine($"string {mark} is not float ");
@@ -59,34 +64,28 @@ namespace ChallangeApp
             this.AddMark(doubleInDecimal);
         }
 
-        //public void AddMark (char mark)
-        //{
-        //    if (mark == 'A' || mark== 'a')
-        //    {
-        //        marks.Add(100);
-        //    }
-        //    else if (mark== 'B'|| mark == 'b')
-        //    {
-        //        marks.Add(80);
-        //    }
-        //}
         public void AddMark(char mark)
         {
             switch (mark)
             {
                 case 'A':
+                case 'a':
                     marks.Add(100);
                     break;
                 case 'B':
+                case 'b':
                     marks.Add(80);
                     break;
                 case 'C':
+                case 'c':
                     marks.Add(60);
                     break;
                 case 'D':
+                case 'd':
                     marks.Add(40);
                     break;
                 case 'E':
+                case 'e':
                     marks.Add(20);
                     break;
                 default:
@@ -95,6 +94,7 @@ namespace ChallangeApp
                     break;
             }
         }
+
 
         public Statistics GetStatistics()
         {
@@ -112,6 +112,25 @@ namespace ChallangeApp
             }
 
             statistics.Avarage /= this.marks.Count;
+
+            switch (statistics.Avarage)
+            {
+                case var avr when statistics.Avarage >= 80:
+                    statistics.AvarageLetter = 'A';
+                    break;
+                case var avr when statistics.Avarage >= 60:
+                    statistics.AvarageLetter = 'B';
+                    break;
+                case var avr when statistics.Avarage >= 40:
+                    statistics.AvarageLetter = 'C';
+                    break;
+                case var avr when statistics.Avarage >= 20:
+                    statistics.AvarageLetter = 'D';
+                    break;
+                default:
+                    statistics.AvarageLetter = 'E';
+                    break;
+            }
 
             return statistics;
         }
