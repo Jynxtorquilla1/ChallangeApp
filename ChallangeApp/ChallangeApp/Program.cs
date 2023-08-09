@@ -9,7 +9,7 @@ var employee = new Employee();
 
 while (true)
 {
-    Console.WriteLine("Podaj kolejną ocenę ocenę");
+    Console.WriteLine("Podaj kolejną ocenę");
     var input = Console.ReadLine();     
     if (input == "q" || input == "Q")
     {
