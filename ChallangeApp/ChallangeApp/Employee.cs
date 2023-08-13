@@ -1,10 +1,12 @@
 ﻿using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Schema;
 
 namespace ChallangeApp
 {
     public class Employee
     {
+        public readonly char sex = 'M';
         public string Name { get; private set; }
         public string Surname { get; private set; }
 
@@ -19,6 +21,7 @@ namespace ChallangeApp
         {
             this.Name = name;
             this.Surname = surname;
+            this.sex = 'K';
         }
 
         public void AddMark(float mark)
@@ -29,7 +32,7 @@ namespace ChallangeApp
             }
             else
             {
-                Console.WriteLine($"{mark} is invalid mark value");
+                throw new Exception($"{mark} is invalid mark value");
             }
 
         }
@@ -38,11 +41,16 @@ namespace ChallangeApp
         {
             if (float.TryParse(mark, out float result))
             {
-                this.AddMark(result);            }
-            
+                this.AddMark(result);               
+            }
+            else if (mark.Length==1)
+            {
+                char.TryParse(mark, out char CharResult);
+                this.AddMark(CharResult);
+            }            
             else
             {
-                Console.WriteLine($"string {mark} is not float ");
+                throw new Exception($"string {mark} is not float");
             }
         }
 
@@ -70,28 +78,28 @@ namespace ChallangeApp
             {
                 case 'A':
                 case 'a':
-                    marks.Add(100);
+                    AddMark(100);
                     break;
                 case 'B':
                 case 'b':
-                    marks.Add(80);
+                    AddMark(80);
                     break;
                 case 'C':
                 case 'c':
-                    marks.Add(60);
+                    AddMark(60);
                     break;
                 case 'D':
                 case 'd':
-                    marks.Add(40);
+                    AddMark(40);
                     break;
                 case 'E':
                 case 'e':
-                    marks.Add(20);
+                    AddMark(20);
                     break;
                 default:
-                    Console.WriteLine("Wrong character");
-                    marks.Add(0);
-                    break;
+                    throw new Exception($" charakter {mark} is not a valid mark");
+                    //marks.Add(0);
+                    //break;
             }
         }
 

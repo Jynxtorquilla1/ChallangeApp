@@ -14,15 +14,14 @@ while (true)
     if (input == "q" || input == "Q")
     {
         break;
-    } 
-    else if(input == "A" || input == "B" || input == "C" || input == "D" || input == "E")
-    {
-        var CharInput = Convert.ToChar(input);
-        employee.AddMark(CharInput);
     }
-    else
+    try
     {
         employee.AddMark(input);
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine($"Exception catched: {ex.Message}");
     }
 
 }
