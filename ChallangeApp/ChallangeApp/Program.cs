@@ -2,10 +2,11 @@
 
 Console.WriteLine("Program do oceny pracowników");
 Console.WriteLine("=======================================");
-Console.WriteLine("Wpisz ocenę jako liczbę lub jako literę: A, B, C, D lub E");
+Console.WriteLine("Wpisz ocenę: 6,5,4,3,3-,2+ lub 1");
+//Console.WriteLine("Wpisz ocenę jako liczbę lub jako literę: A, B, C, D lub E");
 Console.WriteLine("lub wpisz literę q lub Q aby wyświeltlić statystyki pracwonika");
 Console.WriteLine();
-var employee = new Employee();
+var supervisor = new Supervisor("Janusz","Grilowicz");
 
 while (true)
 {
@@ -17,7 +18,7 @@ while (true)
     }
     try
     {
-        employee.AddMark(input);
+        supervisor.AddMark(input);
     }
     catch(Exception ex)
     {
@@ -26,7 +27,7 @@ while (true)
 
 }
 
-var statistics = employee.GetStatistics();
+var statistics = supervisor.GetStatistics();
 Console.WriteLine($"Avarage Score Letter  {statistics.AvarageLetter}");
 Console.WriteLine($"Avarage {statistics.Avarage}");
 Console.WriteLine($"Max {statistics.Max}");

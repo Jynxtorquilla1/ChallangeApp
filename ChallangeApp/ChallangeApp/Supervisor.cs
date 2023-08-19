@@ -1,18 +1,18 @@
-﻿namespace ChallangeApp
+﻿
+namespace ChallangeApp
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
-        
         private List<float> marks = new List<float>();
         // po znaku = można uteż użyć skrótu new()
-               
-        public Employee(string name, string surname)
+
+        public Supervisor(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
         }
 
-        public string Name{ get; private set; }
+        public string Name { get; private set; }
         public string Surname { get; private set; }
 
 
@@ -27,56 +27,47 @@
                 throw new Exception("invalid mark value");
             }
 
-        }
+        }     
 
         public void AddMark(string mark)
         {
-            if (float.TryParse(mark, out float result))
-            {
-                this.AddMark(result);               
-            }
-            else if (char.TryParse(mark, out char CharResult))
-            {
-                this.AddMark(CharResult);
-            }            
-            else
-            {
-                throw new Exception($"string {mark} is not float");
-            }
-        }
-
-             
-        public void AddMark(char mark)
-        {
             switch (mark)
             {
-                case 'A':
-                case 'a':
+                case "6":               
                     AddMark(100f);
                     break;
-                case 'B':
-                case 'b':
+                case "5":                
                     AddMark(80f);
                     break;
-                case 'C':
-                case 'c':
+                case "4":                
                     AddMark(60f);
                     break;
-                case 'D':
-                case 'd':
+                case "3":                
                     AddMark(40f);
                     break;
-                case 'E':
-                case 'e':
+                case "3-":
+                case "-3":
+                    AddMark(35f);
+                    break;
+                case "2+":
+                case "+2":
+                    AddMark(35f);
+                    break;
+                case "2":                
                     AddMark(20f);
                     break;
+                case "1":                
+                    AddMark(0);
+                    break;
                 default:
-                    throw new Exception($" charakter {mark} is not a valid mark");
-                    //marks.Add(0);
-                    //break; <- nie trzeba używać gdy jest throw new Exception
+                    throw new Exception($" charakter {mark} is not a valid mark");                  
             }
         }
 
+        public void AddMark(char mark)
+        {
+            throw new NotImplementedException();
+        }
 
         public Statistics GetStatistics()
         {
