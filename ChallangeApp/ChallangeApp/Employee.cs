@@ -1,27 +1,28 @@
-﻿using System.Runtime.Intrinsics.Arm;
-using System.Security.Cryptography.X509Certificates;
+﻿using Microsoft.Win32.SafeHandles;
 using System.Xml.Schema;
 
 namespace ChallangeApp
 {
-    public class Employee
+    public class Employee : Person
     {
-        public readonly char sex = 'M';
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-
+        
         private List<float> marks = new List<float>();
+        // po znaku = można uteż użyć skrótu new()
+               
+        public Employee(string name, string surname, char sex, int age)
+            : base(name, surname, sex, age)
+        {                
+        }
 
-        public Employee() 
+        public Employee()
+            : this("no name", "no surname", '?', 0)
         {
-
         }
 
         public Employee(string name, string surname)
+            : this(name, surname, '?', 0)
         {
-            this.Name = name;
-            this.Surname = surname;
-            this.sex = 'K';
+            //this.Surname = surname;
         }
 
         public void AddMark(float mark)
@@ -32,7 +33,7 @@ namespace ChallangeApp
             }
             else
             {
-                throw new Exception($"{mark} is invalid mark value");
+                throw new Exception("invalid mark value");
             }
 
         }
@@ -43,9 +44,8 @@ namespace ChallangeApp
             {
                 this.AddMark(result);               
             }
-            else if (mark.Length==1)
+            else if (char.TryParse(mark, out char CharResult))
             {
-                char.TryParse(mark, out char CharResult);
                 this.AddMark(CharResult);
             }            
             else
@@ -54,52 +54,35 @@ namespace ChallangeApp
             }
         }
 
-        public void AddMark(double mark)
-        {
-            float doubleInFloat = (float)Math.Round(mark, 2);
-            this.AddMark(doubleInFloat);
-        }
-
-        public void AddMark(long mark)
-        {
-            float doubleInLong = (float)mark;
-            this.AddMark(doubleInLong);
-        }
-
-        public void AddMark(decimal mark)
-        {
-            float doubleInDecimal = (float)Math.Round(mark, 2);
-            this.AddMark(doubleInDecimal);
-        }
-
+             
         public void AddMark(char mark)
         {
             switch (mark)
             {
                 case 'A':
                 case 'a':
-                    AddMark(100);
+                    AddMark(100f);
                     break;
                 case 'B':
                 case 'b':
-                    AddMark(80);
+                    AddMark(80f);
                     break;
                 case 'C':
                 case 'c':
-                    AddMark(60);
+                    AddMark(60f);
                     break;
                 case 'D':
                 case 'd':
-                    AddMark(40);
+                    AddMark(40f);
                     break;
                 case 'E':
                 case 'e':
-                    AddMark(20);
+                    AddMark(20f);
                     break;
                 default:
                     throw new Exception($" charakter {mark} is not a valid mark");
                     //marks.Add(0);
-                    //break;
+                    //break; <- nie trzeba używać gdy jest throw new Exception
             }
         }
 
