@@ -2,33 +2,47 @@
 
 Console.WriteLine("Program do oceny pracowników");
 Console.WriteLine("=======================================");
-Console.WriteLine("Wpisz ocenę: 6,5,4,3,3-,2+ lub 1");
-//Console.WriteLine("Wpisz ocenę jako liczbę lub jako literę: A, B, C, D lub E");
+//Console.WriteLine("Wpisz ocenę: 6,5,4,3,3-,2+ lub 1");
+Console.WriteLine("Wpisz ocenę jako liczbę lub jako literę: A, B, C, D lub E");
 Console.WriteLine("lub wpisz literę q lub Q aby wyświeltlić statystyki pracwonika");
 Console.WriteLine();
-var supervisor = new Supervisor("Janusz","Grilowicz");
+var employee = new EmployeeInFile("Janusz","Grilowicz");
+employee.AddMark(0.5f);
+employee.AddMark(0.8f);
+employee.AddMark(0.8f);
+
 
 while (true)
 {
     Console.WriteLine("Podaj kolejną ocenę");
-    var input = Console.ReadLine();     
+    var input = Console.ReadLine();
     if (input == "q" || input == "Q")
     {
         break;
     }
-    try
+    else
     {
-        supervisor.AddMark(input);
-    }
-    catch(Exception ex)
-    {
-        Console.WriteLine($"Exception catched: {ex.Message}");
-    }
+        try
+        {
+            employee.AddMark(input);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception catched: {ex.Message}");
+        }
+    }    
 
 }
-
-var statistics = supervisor.GetStatistics();
-Console.WriteLine($"Avarage Score Letter  {statistics.AvarageLetter}");
-Console.WriteLine($"Avarage {statistics.Avarage}");
-Console.WriteLine($"Max {statistics.Max}");
-Console.WriteLine($"Min {statistics.Min}");
+try
+{
+    var statistics = employee.GetStatistics();
+    Console.WriteLine($"Avarage Score Letter  {statistics.AvarageLetter}");
+    Console.WriteLine($"Avarage {statistics.Avarage}");
+    Console.WriteLine($"Max {statistics.Max}");
+    Console.WriteLine($"Min {statistics.Min}");
+    Console.WriteLine($"Number of input marks: {statistics.Num}");
+}
+catch (Exception ex2)
+{
+    Console.WriteLine($"Exception catched: {ex2.Message}");
+}

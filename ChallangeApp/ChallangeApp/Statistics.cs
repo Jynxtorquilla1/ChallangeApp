@@ -9,6 +9,9 @@ namespace ChallangeApp
 
         public float Avarage { get; set; }
 
+        public char AvarageLetter { get; set; }
+
+        public float Num { get; set; }
+
     }
 }
-//
