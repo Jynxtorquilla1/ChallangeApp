@@ -2,16 +2,21 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
-        public EmployeeInMemory(string name, string surname) : base(name, surname)
+        public override event MarkAddedDelegate MarkAdded;
+        public EmployeeInMemory(string name, string surname) :base(name, surname)
+        {            
+        }
+        
+        private void ConsoleMessage(string message)
         {
+            Console.WriteLine(message);
         }
 
-        //public override void SayHello()
-        //{
-        //    base.SayHello();
-        //    Console.WriteLine("niece to see you");
-        //}
-
+        private void ConsoleMessage2(string message)
+        {
+            Console.WriteLine(message.ToUpper());
+        }
+       
         private List<float> marks = new();
 
         public override void AddMark(float mark)
@@ -19,6 +24,11 @@
             if (mark >= 0 && mark <= 100)
             {
                 marks.Add(mark);
+
+                if (MarkAdded != null)
+                {
+                    MarkAdded(this, new EventArgs());
+                }
             }
             else
             {

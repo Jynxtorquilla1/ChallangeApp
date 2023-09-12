@@ -4,6 +4,8 @@
     {
         private const string fileName = "marks.txt";
 
+        public override event MarkAddedDelegate MarkAdded;
+
         public EmployeeInFile(string name, string surname) :
             base(name, surname)
         {
@@ -17,6 +19,10 @@
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(mark);
+                }
+                if (MarkAdded != null)
+                {
+                    MarkAdded(this, new EventArgs());
                 }
             }
             else

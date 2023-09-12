@@ -2,15 +2,19 @@
 
 Console.WriteLine("Program do oceny pracowników");
 Console.WriteLine("=======================================");
-//Console.WriteLine("Wpisz ocenę: 6,5,4,3,3-,2+ lub 1");
 Console.WriteLine("Wpisz ocenę jako liczbę lub jako literę: A, B, C, D lub E");
 Console.WriteLine("lub wpisz literę q lub Q aby wyświeltlić statystyki pracwonika");
 Console.WriteLine();
 var employee = new EmployeeInFile("Janusz","Grilowicz");
-employee.AddMark(0.5f);
-employee.AddMark(0.8f);
-employee.AddMark(0.8f);
 
+employee.MarkAdded += EmployeeMarkAdded;
+
+void EmployeeMarkAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nową ocenę");
+}
+
+employee.AddMark(0.8f);
 
 while (true)
 {
