@@ -6,17 +6,7 @@
         public EmployeeInMemory(string name, string surname) :base(name, surname)
         {            
         }
-        
-        private void ConsoleMessage(string message)
-        {
-            Console.WriteLine(message);
-        }
-
-        private void ConsoleMessage2(string message)
-        {
-            Console.WriteLine(message.ToUpper());
-        }
-       
+                   
         private List<float> marks = new();
 
         public override void AddMark(float mark)

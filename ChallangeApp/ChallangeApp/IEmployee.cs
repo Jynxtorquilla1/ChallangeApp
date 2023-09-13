@@ -12,5 +12,8 @@
         void AddMark(char mark);
 
         Statistics GetStatistics();
+
+        delegate void MarkAddedDelegate();
+
     }
 }
