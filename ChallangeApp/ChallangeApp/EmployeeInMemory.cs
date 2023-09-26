@@ -77,36 +77,9 @@
         {
             var statistics = new Statistics();
 
-            statistics.Avarage = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            foreach (var mark in this.marks)
+           foreach (var mark in this.marks)
             {
-                statistics.Max = Math.Max(statistics.Max, mark);
-                statistics.Min = Math.Min(statistics.Min, mark);
-                statistics.Avarage += mark;
-            }
-
-            statistics.Avarage /= this.marks.Count;
-
-            switch (statistics.Avarage)
-            {
-                case var avr when statistics.Avarage >= 80:
-                    statistics.AvarageLetter = 'A';
-                    break;
-                case var avr when statistics.Avarage >= 60:
-                    statistics.AvarageLetter = 'B';
-                    break;
-                case var avr when statistics.Avarage >= 40:
-                    statistics.AvarageLetter = 'C';
-                    break;
-                case var avr when statistics.Avarage >= 20:
-                    statistics.AvarageLetter = 'D';
-                    break;
-                default:
-                    statistics.AvarageLetter = 'E';
-                    break;
+                statistics.AddMark(mark);
             }
 
             return statistics;

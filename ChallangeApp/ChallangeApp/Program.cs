@@ -44,7 +44,7 @@ try
     Console.WriteLine($"Avarage {statistics.Avarage}");
     Console.WriteLine($"Max {statistics.Max}");
     Console.WriteLine($"Min {statistics.Min}");
-    Console.WriteLine($"Number of input marks: {statistics.Num}");
+    Console.WriteLine($"Number of input marks: {statistics.Count}");
 }
 catch (Exception ex2)
 {
