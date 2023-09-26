@@ -4,7 +4,8 @@
     {
         public override event MarkAddedDelegate MarkAdded;
         public EmployeeInMemory(string name, string surname) :base(name, surname)
-        {            
+        {      
+            
         }
                    
         private List<float> marks = new();

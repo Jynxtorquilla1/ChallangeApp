@@ -46,7 +46,6 @@ namespace ChallangeApp
             this.Min = float.MaxValue;
             
         }
-
         public void AddMark(float mark)
         {
             this.Count++;

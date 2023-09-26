@@ -23,4 +23,5 @@
 
         public abstract Statistics GetStatistics();
     }
+
 }
